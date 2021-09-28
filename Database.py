@@ -3,7 +3,6 @@ import pandas as pd
 import csv
 
 
-
 dataing2 = """
 Username, Password, Score
 Oblivion, Fo0tba!l8, 0

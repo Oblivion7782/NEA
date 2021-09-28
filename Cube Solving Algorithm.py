@@ -9,7 +9,8 @@
 joeOrder = "UUUUUUUUDRLRLRRFRFRFBFFBLBLDDDDDDDDULRFRLLRLBBBBFBBLFF"#U + R + F + D + L + B
 for i in ["U", "R", "L", "D", "B", "F"]:
     print(i,"=",joeOrder.count(i))
-print(kociemba.solve(joeOrder))"""
+print(kociemba.solve(joeOrder))
+"""
 
 import kociemba
 from random import randint

@@ -39,7 +39,6 @@ def Login(chance3):
                 time.sleep(chance3[-1+chance])
                 chance += 1
         
-
 def SignUp():
     checks1 = False
     checks2 = False

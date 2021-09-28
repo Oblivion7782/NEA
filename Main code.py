@@ -13,7 +13,6 @@ from tkinter import *
 from tkinter.ttk import *
 
 '''Main Code '''
-
 window = Tk()
 
 greeting = Label(text="ok")
