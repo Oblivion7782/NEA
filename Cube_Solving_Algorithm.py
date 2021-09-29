@@ -1,9 +1,11 @@
+'''imports'''
 # import matplotlib
 # import numpy as np
 # import pandas as pd
 # from collections import namedtuple
 # from matplotlib import pyplot as plt
 # from mpl_toolkits.mplot3d import Axes3D
+'''Sub Code '''
 
 """
 joeOrder = "UUUUUUUUDRLRLRRFRFRFBFFBLBLDDDDDDDDULRFRLLRLBBBBFBBLFF"#U + R + F + D + L + B
@@ -14,7 +16,6 @@ print(kociemba.solve(joeOrder))
 
 import kociemba
 from random import randint
-
 num = 6
 U = "LUBBUDRDU"
 R = "BBRFRBLDU"
@@ -52,12 +53,14 @@ class Cube:
             print(i,"=",order.count(i))
         return kociemba.solve(order)
 
-wqer = U + R + F + D + L + B
-c = Cube()
-c.create_cube()
-#checkCube()
-print(c.cube)
-print(c.solve())
-''' Sam certified '''
+''' Unneeded due to to being used in main code'''
+# wqer = U + R + F + D + L + B
+# c = Cube()
+# c.create_cube()
+# #checkCube()
+# print(c.cube)
+# print(c.solve())
+#''' Sam certified '''
+
 
 

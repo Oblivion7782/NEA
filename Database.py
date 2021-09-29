@@ -11,4 +11,4 @@ Oblivion, Fo0tba!l8, 0
 with open('UsePassData.csv', mode='w') as UserData:
     UserDataset = csv.writer(UserData, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 
-UserDataset.writerow(['Paddy123', ''])
+UserDataset.writerow(['Paddy123', 'hello'])
