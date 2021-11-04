@@ -25,7 +25,7 @@ L = "DRFULLUDF"
 B = "DRBUBLLLL"
 
 class QB:   #Every individual QB has 6 sides with 26 (27 with the centre never seen) cubes
-    sides = dict(white="U", green="F", red="R", orange="L", blue="B", yellow="D")   
+    sides = dict(white="U", green="F", red="R", orange="L", blue="B", yellow="D")  
     def __init__(self, colour, current_face, number):
         self.colour = colour
         self.real_face = QB.sides[colour]
@@ -36,6 +36,7 @@ class QB:   #Every individual QB has 6 sides with 26 (27 with the centre never s
         return str((self.colour, self.real_face, self.current_face, self.cubi_number))
 
 class Cube:
+    #all9 = []
     def __init__(self):
         self.cube = []#URFDLB
     
@@ -50,17 +51,14 @@ class Cube:
         order = input("Enter the Rubik's cube orientation: ") #"".join(qb.current_face for qb in self.cube)
         print(order)
         for i in ["U", "R", "L", "D", "B", "F"]:
-            print(i,"=",order.count(i))
+            correct = (i,"=",order.count(i))
+            print(correct)
+            #Cube.all9.append()
         return kociemba.solve(order)
 
 ''' Unneeded due to to being used in main code'''
 # wqer = U + R + F + D + L + B
-# c = Cube()
-# c.create_cube()
-# #checkCube()
-# print(c.cube)
-# print(c.solve())
-#''' Sam certified '''
-
-
-
+c = Cube()
+#print(Cube.all9)
+print(c.solve())
+# ''' Sam certified '''
