@@ -59,6 +59,6 @@ class Cube:
 ''' Unneeded due to to being used in main code'''
 # wqer = U + R + F + D + L + B
 c = Cube()
-#print(Cube.all9)
+##print(Cube.all9)
 print(c.solve())
 # ''' Sam certified '''
