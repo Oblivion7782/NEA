@@ -1,0 +1,10 @@
+import json
+
+Username = "Oblivion"
+Password = "Fo0tBa1l!2"
+score    = 0
+
+def UserPassData():   #Username Password Data
+    x = { "USERNAME":User, "PASSWORD":Pass, "SCORE":score}
+    with open("UserDataFile", "w+") as f:
+        UserData = json.dump(x, f)
