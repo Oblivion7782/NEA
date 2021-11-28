@@ -36,7 +36,7 @@ class QB:   #Every individual QB has 6 sides with 26 (27 with the centre never s
         return str((self.colour, self.real_face, self.current_face, self.cubi_number))
 
 class Cube:
-    #all9 = []
+    all9 = []
     def __init__(self):
         self.cube = []#URFDLB
     
@@ -47,18 +47,34 @@ class Cube:
                 face = valids.pop(randint(0, len(valids)-1))
                 self.cube.append(QB(c, face, i+1))
     
+    # def solve(self):
+        
+    #     order = input("Enter the Rubik's cube orientation: ") #"".join(qb.current_face for qb in self.cube)
+    #     print(order)
+    #     for i in ["U", "R", "L", "D", "B", "F"]:
+    #         correct = (i,"=",order.count(i))
+    #         #print(correct)
+    #         self.all9.append(correct)
+    #     print(self.all9)
+    #     return kociemba.solve(order)
+    
     def solve(self):
-        order = input("Enter the Rubik's cube orientation: ") #"".join(qb.current_face for qb in self.cube)
-        print(order)
-        for i in ["U", "R", "L", "D", "B", "F"]:
-            correct = (i,"=",order.count(i))
-            print(correct)
-            #Cube.all9.append()
+        while self.all9 != "[('U', '=', 9), ('R', '=', 9), ('L', '=', 9), ('D', '=', 9), ('B', '=', 9), ('F', '=', 9)]":
+            order = input("Enter the Rubik's cube orientation: ") #"".join(qb.current_face for qb in self.cube)
+            for i in ["U", "R", "L", "D", "B", "F"]:
+                correct = (i,"=",order.count(i))
+                self.all9.append(correct)
         return kociemba.solve(order)
+         
+    #      while order:
+    #         for i in ["U", "R", "L", "D", "B", "F"]:
+    #             correct = (i,"=",order.count(i))
+            # print(correct)
 
+    #     return kociemba.solve(order)
 ''' Unneeded due to to being used in main code'''
 # wqer = U + R + F + D + L + B
 c = Cube()
-##print(Cube.all9)
+#print(all9)
 print(c.solve())
 # ''' Sam certified '''

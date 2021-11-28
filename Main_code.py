@@ -37,17 +37,10 @@ while cube == True:
     print(Cube_Solving_Alg.cube)
     print(Cube_Solving_Alg.solve())
     if Cube_Solving_Alg.solve() == """U = 9, R = 9, L = 9, D = 9, B = 9, F = 9""":
-
+        pass
 
 #Login_and_SignUp_System = Login_and_Sign_Up_System.Master_Login_SignUp()
 #Login = Login_and_SignUp_System.Login()
 #SignUp = Login_and_SignUp_System.SignUp()
 #print(Login)
 #print(SignUp)
-
-
-
-
-
-
-
