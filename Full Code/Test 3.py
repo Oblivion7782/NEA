@@ -262,7 +262,7 @@ def main(root):
 
     #Cube Holder
     holder = LabelFrame(dispcube,bg="black")
-    holder.grid(row = 1,column = 1, rowspan = 3, columnspan = 3)
+    holder.grid(row = 1,column = 1, rowspan = 5, columnspan = 5)
 
     #CUBIES
     buts = [
@@ -279,199 +279,50 @@ def main(root):
     show(selected)
 
 
-def solving():
-    #CLOSE MAIN
-    global root
-    root.destroy()
-    #OPEN SOLVER
-    if __name__ == "__main__":
-        root = Tk()
-        main(root)
-        root.mainloop()
 
-
-def instructions():
-    global root
-    instructions = Toplevel(root)
-    instructions.title("Instructions")
-    instructions.geometry("1366x768")
-
-    #DEFINING FRAME
-    dispcubeIns    = LabelFrame(instructions,padx = 10,pady = 15,text = "Current State Of Cube")
-    modeSelIns     = LabelFrame(instructions,padx = 60,pady = 10,text = "Select Mode")
-    colourSelIns   = LabelFrame(instructions,padx = 46,pady = 10,text = "Pick A Colour")
-    scrambleIns   = LabelFrame(instructions,padx = 37,pady = 5, text = "Scramble")
-    optionsIns     = LabelFrame(instructions,padx = 45,pady = 10,text = "Options")
-    otherIns       = LabelFrame(instructions,padx = 2, pady = 2, text = "Solution")
-    solutionIns    = LabelFrame(instructions,padx = 2, pady = 2, text = "Understood or Exit")
-    
-    #PLACING FRAME
-    dispcubeIns.grid(row = 1, column = 0, rowspan = 4,padx = 10)
-    modeSelIns.grid(row = 1, column = 1,padx = 10)
-    colourSelIns.grid(row = 2, column = 1,padx = 10,pady = 5)
-    scrambleIns.grid(row = 3, column = 1)
-    optionsIns.grid(row = 4, column = 1,padx = 10)
-    solutionIns.grid(row = 5, column = 0,padx = 10,pady = 10) 
-    otherIns.grid(row = 5, column = 1,padx = 10)
-
-    #INSTRUCTIONS
-    Label(dispcubeIns, text="")
-    Label(modeSelIns, text="Browse Sides is used when trying to view a face but not to edit with the colour selector\n Edit Sides is used for when you need to change each individual Cubie to match a real Rubik's Cube")
-    Label(colourSelIns, text="")
-    Label(scrambleIns, text="")
-    Label(optionsIns, text="")
-    Label(solutionIns, text="")
-    
-    #DEFINE OTHER
-    ok   = Button(otherIns, text="OK", command=solving())
-    exit = Button(otherIns, text="Exit", command=root.destroy())
-
-    #PLACE OTHER
-    ok.grid(row=0, column=0)
-    exit.grid(row=0, column=1)
-
-    
-
-def validatelogin():
-    usernameStr = str(username.get())
-    passwordStr = str(password.get())
-    
-    for line in open("Users.txt","r").readlines():
-        login_info = line.split() 
-        if usernameStr == login_info[0]: #passwordStr == login_info[1]
-            instructions()
-
-
-def validateregister():
-    global Out
-    usernameStr = str(username.get())
-    passwordStr = str(password.get())
-
-    #VALIDATE USER
-    if len(usernameStr) > 3 and len(usernameStr) < 17 and len(passwordStr) > 5 and len(passwordStr) < 20 and re.search('[0-9]',passwordStr) is not None and re.search('[A-Z]',passwordStr) is not None and re.search('[a-z]',passwordStr) is not None and re.search('[£!#$%&()*+/<=>?@_]',passwordStr) is not None:        
-        with open('Users.txt', 'a') as f:
-            f.write(usernameStr)
-            f.write(" ")
-            f.write(passwordStr)
-        login() 
-
-
-def usercheck(Out):
-    usernameStr = str(username.get())
-    passwordStr = str(password.get()) 
-    Out.config(state = "normal")
-    try:
-        for line in open("Users.txt","r").readlines():
-            login_info = line
-            if usernameStr == login_info[0]:
-                Out.insert(0,"Username already used")
-            else:
-                validateregister()
-    except:
-        Out.delete(0,END)
-        Out.insert(0,"INVALID INPUT")
-    Out.config(state = "readonly")
-
-
-def register(): #COMPLETED
-    global username, password, Out
-    register = Toplevel(root)
-    register.title("Register")
-    register.geometry("500x250")
-
-    username = StringVar()
-    password = StringVar()
-
-    #DEFINING FRAMES   
-    submit = Labelframe(register, text="")
-    PInfo  = LabelFrame(register, text="Password info")
-    UInfo  = Labelframe(register, text="Username info")
-    InputUP= LabelFrame(register, text="Username and Password")
-    Output = Labelframe(register, text="Output")
-     
-    #PLACING FRAMES
-    PInfo.grid(row=0,column=0, padx=5, pady=10, rowspan=3)
-    UInfo.grid(row=0, column=1, padx=5, pady=10)
-    submit.grid(row=4, column=1)
-    InputUP.grid(row=4, column=0)
-    Output.grid(row=2, column=1)
-
-    #INPUTS
-    Userlabel1 = Label(InputUP, text="New Username:")
-    UserEntry1 = Entry(InputUP, textvariable = username)
-    PassLabel1 = Label(InputUP, text = "New Password:")
-    PassEntry1 = Entry(InputUP, textvariable = password, show="*")
-    
-    #SUBMIT
-    SubBtn = Button(submit, text="Submit", command=usercheck)
-    SubBtn.grid(row = 3, column = 0, padx=10, pady=5)
-
-    #USERNAME INFO
-    InfoU = Label(UInfo, text="Username must be between 3-17 characters.")
-    InfoU.grid(row=4, column = 1)
-    
-    #OUTPUT
-    Out = Entry(Output,width=30,state = "readonly")
-    Out.grid(row=5, column=1)
-
-    #PASSWORD INFO
-    InfoP1 = Label(PInfo, text="Password must have a special character")       
-    InfoP2 = Label(PInfo, text="Password must have a lowercase letter")         
-    InfoP3 = Label(PInfo, text="Password must have a uppercase letter")
-    InfoP4 = Label(PInfo, text="Password must have a number")
-    InfoP5 = Label(PInfo, text="Password must be between 5-20 characters")
-
-    InfoP1.grid(row=5, column = 0)
-    InfoP2.grid(row=6, column = 0)
-    InfoP3.grid(row=7, column = 0)
-    InfoP4.grid(row=8, column = 0)
-    InfoP5.grid(row=9, column = 0)
-    
-    Userlabel1.grid(row = 1, column = 0)
-    UserEntry1.grid(row = 1, column = 1, padx=5, pady=5)
-    PassLabel1.grid(row = 2, column = 0)
-    PassEntry1.grid(row = 2, column = 1, padx=5, pady=10)
-    
-
-def login():
-    global username, password, login
-    login = Toplevel(root)
-    login.title("login")
-    login.geometry("240x75")
-
-    username = StringVar()
-    password = StringVar()
-
-    Userlabel1 = Label(login, text="Enter a Username")
-    UserEntry1 = Entry(login, textvariable = username)
-    PassLabel1 = Label(login, text = "Enter Password")
-    PassEntry1 = Entry(login, textvariable = password, show="*")
-    SubBtn     = Button(login, text="Submit", command=validatelogin)
-
-    Userlabel1.grid(row = 0, column = 0)
-    UserEntry1.grid(row = 0, column = 1)
-    PassLabel1.grid(row = 1, column = 0)
-    PassEntry1.grid(row = 1, column = 1)
-    SubBtn.grid(row = 2, column = 1)
-
-
-def main_screen():
-    global root, login, register
+if __name__ == "__main__":
     root = Tk()
-    root.geometry("250x190")
-    root.title("Choose")
-
-    Choice = Label(root, text = "Choose Login or Register", bg = "grey", width="27", pady=10, font = ("Calabri", 13))
-    Login = Button(root, text="Login", width="30", height=2, command = login)
-    Register = Button(root, text="Register", width="30", height=2, command = register)
-    
-    Choice.grid(row= 1, column=0)
-    Login.grid(row= 2, column=0, pady=10)
-    Register.grid(row= 3, column=0, pady=10)
-    
+    main(root)
     root.mainloop()
+# from tkinter import *
+# def instructions():
+#     instructions = Tk()
 
+#     instructions.title("Instructions")
+#     instructions.geometry("1366x768")
 
-main_screen()
+#     #DEFINING FRAME
+#     dispcubeIns    = LabelFrame(instructions,padx = 10,pady = 15,text = "Current State Of Cube")
+#     modeSelIns     = LabelFrame(instructions,padx = 60,pady = 10,text = "Select Mode")
+#     colourSelIns   = LabelFrame(instructions,padx = 46,pady = 10,text = "Pick A Colour")
+#     scrambleIns    = LabelFrame(instructions,padx = 37,pady = 5, text = "Scramble")
+#     optionsIns     = LabelFrame(instructions,padx = 45,pady = 10,text = "Options")
+#     otherIns       = LabelFrame(instructions,padx = 2, pady = 2, text = "Solution")
+#     solutionIns    = LabelFrame(instructions,padx = 2, pady = 2, text = "Understood or Exit")
+    
+#     #PLACING FRAME
+#     dispcubeIns.grid(row = 1, column = 0, rowspan = 4,padx = 10)
+#     modeSelIns.grid(row = 1, column = 1,padx = 10)
+#     colourSelIns.grid(row = 2, column = 1,padx = 10,pady = 5)
+#     scrambleIns.grid(row = 3, column = 1)
+#     optionsIns.grid(row = 4, column = 1,padx = 10)
+#     solutionIns.grid(row = 5, column = 0,padx = 10,pady = 10) 
+#     otherIns.grid(row = 5, column = 1,padx = 10)
 
+#     #INSTRUCTIONS
+#     Label(dispcubeIns, text="")
+#     Label(modeSelIns, text="Browse Sides is used when trying to view a face but not to edit with the colour selector\n Edit Sides is used for when you need to change each individual Cubie to match a real Rubik's Cube")
+#     Label(colourSelIns, text="")
+#     Label(scrambleIns, text="")
+#     Label(optionsIns, text="")
+#     Label(solutionIns, text="")
+    
+#     #DEFINE OTHER
+#     ok   = Button(otherIns, text="OK", command="")
+#     exit = Button(otherIns, text="Exit", command="")
 
+# instructions()
+# instructions.mainloop()
+
+#     #solving()
+#     #instructions.destroy()
