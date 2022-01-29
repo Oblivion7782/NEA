@@ -1,0 +1,17 @@
+PAGE
+    Toplevel: New_Toplevel
+        Canvas: Canvas1  
+        Canvas: Canvas2  
+        Canvas: Canvas3  
+        Canvas: Canvas4  
+        Canvas: Canvas5  
+        Button: Button1  
+    Toplevel: Error_Information
+        
+             command: set exitvar 1
+             command: 
+        vTcl:save_err_msg
+        set exitvar 1
+    
+        
+

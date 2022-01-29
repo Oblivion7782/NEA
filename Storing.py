@@ -1,21 +1,19 @@
-dataing = """{ 
-    "playerdata": [ 
+# dataing = """{  
+#     "playerdata": [ 
     
-        {   
-            "id":"01",
-            "Username":"ConvinientUsername", 
-            "Password":"Fo0tBa1l12£", 
-            "Score":0
-        }, 
+#         {   
+#             "id":"01",
+#             "Username":"ConvinientUsername", 
+#             "Password":"Fo0tBa1l12£", 
+#         }, 
     
-        {
-            "id":"02",
-            "Username":"LovePizza", 
-            "Password":"RuGbY0!23", 
-            "Score":0
-        } 
-    ]
-}"""
+#         {
+#             "id":"02",
+#             "Username":"LovePizza", 
+#             "Password":"RuGbY0!23", 
+#         } 
+#     ]
+# }"""
 
 import json
 
@@ -31,10 +29,14 @@ def wData(dataing): #Write
         file.close()
 
 
-playerData = wData(dataing)
+##playerData = wData(dataing)
 player2Data = rData()
-print(playerData)
+#print(playerData)
 print(player2Data)
+
+# def aData(dataing): #Acc
+#     with open('')as file:
+#         pass
 
 
 

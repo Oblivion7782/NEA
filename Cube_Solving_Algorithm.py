@@ -16,6 +16,7 @@ print(kociemba.solve(joeOrder))
 
 import kociemba
 from random import randint
+
 num = 6
 U = "LUBBUDRDU"
 R = "BBRFRBLDU"
@@ -59,8 +60,10 @@ class Cube:
     #     return kociemba.solve(order)
     
     def solve(self):
-        while self.all9 != "[('U', '=', 9), ('R', '=', 9), ('L', '=', 9), ('D', '=', 9), ('B', '=', 9), ('F', '=', 9)]":
+        if self.all9 != "[('U', '=', 9), ('R', '=', 9), ('L', '=', 9), ('D', '=', 9), ('B', '=', 9), ('F', '=', 9)]":
             order = input("Enter the Rubik's cube orientation: ") #"".join(qb.current_face for qb in self.cube)
+            print
+            
             for i in ["U", "R", "L", "D", "B", "F"]:
                 correct = (i,"=",order.count(i))
                 self.all9.append(correct)
@@ -72,9 +75,11 @@ class Cube:
             # print(correct)
 
     #     return kociemba.solve(order)
-''' Unneeded due to to being used in main code'''
+''' Unneeded due to to being used in main code''' 
 # wqer = U + R + F + D + L + B
 c = Cube()
 #print(all9)
 print(c.solve())
 # ''' Sam certified '''
+
+

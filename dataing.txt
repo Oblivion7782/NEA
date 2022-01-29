@@ -1,5 +1,12 @@
 {
-	"Username":"",
-	"Password":"", 
-	"Score":0
+	{
+		"Username":"Oblivion7782",
+		"Password":"System!123", 
+		"Score":0
+	}, 
+	{
+			"Username":"CtrlCannon",
+			"Password":"!GuarD1an23"
+			"Score":0
+	}
 }
