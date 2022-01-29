@@ -1,20 +1,11 @@
 from __future__ import print_function
 from atexit import register
-from cProfile import label, run
-from distutils import command
-from distutils.log import info
 from tkinter import *
-from tkinter import font
 from tkinter.ttk import Labelframe
-from turtle import color
-from xml.dom import registerDOMImplementation
-from matplotlib.pyplot import text
-from numpy import column_stack
 import moves
 import cube
 import kociemba
 import re   
-import bcrypt
 
 #Display the cube face
 def show(side):
@@ -365,8 +356,7 @@ def validateregister():
         login() 
 
 
-def usercheck():
-    global Out
+def usercheck(Out):
     usernameStr = str(username.get())
     passwordStr = str(password.get()) 
     Out.config(state = "normal")
