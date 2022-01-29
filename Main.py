@@ -289,9 +289,10 @@ def main(root):
 
 
 def solving():
-    #CLOSES Login system
+    #CLOSE MAIN
     global root
     root.destroy()
+    #OPEN SOLVER
     if __name__ == "__main__":
         root = Tk()
         main(root)
@@ -300,80 +301,90 @@ def solving():
 
 def instructions():
     global root
-    instrucitons = Toplevel(root)
-    instrucitons.title("Instructions")
-    register.geometory("400x320")
-    
-    Onwards     = Button(instrucitons, text="OK", command=solving())
-    exit        = Button(instrucitons, text="Exit", command=root.destroy())
-    InfoI1      = Label(instrucitons, text="close widows when finished reading")
+    instructions = Toplevel(root)
+    instructions.title("Instructions")
+    instructions.geometry("1366x768")
+
     #DEFINING FRAME
-    dispcube    = LabelFrame(root,padx = 10,pady = 15,text = "Current State Of Cube")
-    modeSel     = LabelFrame(root,padx = 60,pady = 10,text = "Select Mode")
-    colourSel   = LabelFrame(root,padx = 46,pady = 10,text = "Pick A Colour")
-    scramble    = LabelFrame(root,padx = 37,pady = 5, text = "Scramble")
-    options     = LabelFrame(root,padx = 45,pady = 10,text = "Options")
-    exit        = LabelFrame(root,padx = 2, pady = 2, text = "Solution")
+    dispcubeIns    = LabelFrame(instructions,padx = 10,pady = 15,text = "Current State Of Cube")
+    modeSelIns     = LabelFrame(instructions,padx = 60,pady = 10,text = "Select Mode")
+    colourSelIns   = LabelFrame(instructions,padx = 46,pady = 10,text = "Pick A Colour")
+    scrambleIns   = LabelFrame(instructions,padx = 37,pady = 5, text = "Scramble")
+    optionsIns     = LabelFrame(instructions,padx = 45,pady = 10,text = "Options")
+    otherIns       = LabelFrame(instructions,padx = 2, pady = 2, text = "Solution")
+    solutionIns    = LabelFrame(instructions,padx = 2, pady = 2, text = "Understood or Exit")
+    
     #PLACING FRAME
-    dispcube.grid(row = 1, column = 0, rowspan = 4,padx = 10)
-    modeSel.grid(row = 1, column = 1,padx = 10)
-    colourSel.grid(row = 2, column = 1,padx = 10,pady = 5)
-    scramble.grid(row = 3, column = 1)
-    options.grid(row = 4, column = 1,padx = 10)
-    exit.grid(row = 5, column = 0,padx = 10,pady = 10) 
+    dispcubeIns.grid(row = 1, column = 0, rowspan = 4,padx = 10)
+    modeSelIns.grid(row = 1, column = 1,padx = 10)
+    colourSelIns.grid(row = 2, column = 1,padx = 10,pady = 5)
+    scrambleIns.grid(row = 3, column = 1)
+    optionsIns.grid(row = 4, column = 1,padx = 10)
+    solutionIns.grid(row = 5, column = 0,padx = 10,pady = 10) 
+    otherIns.grid(row = 5, column = 1,padx = 10)
 
     #INSTRUCTIONS
-    dispcubeIns = Label(dispcube, text="")
-    modeSelIns  = Label(modeSel, text="")
-    colourSelIns= Label(colourSel, text="")
-    scrambleIns = Label(scramble, text="")
-    optionsIns  = Label(options, text="")
-    exitIns     = Label(exit, text="")
+    Label(dispcubeIns, text="")
+    Label(modeSelIns, text="Browse Sides is used when trying to view a face but not to edit with the colour selector\n Edit Sides is used for when you need to change each individual Cubie to match a real Rubik's Cube")
+    Label(colourSelIns, text="")
+    Label(scrambleIns, text="")
+    Label(optionsIns, text="")
+    Label(solutionIns, text="")
+    
+    #DEFINE OTHER
+    ok   = Button(otherIns, text="OK", command=solving())
+    exit = Button(otherIns, text="Exit", command=root.destroy())
 
-    #PLACING INSTRUCTIONS
-    # dispcubeIns.grid(row=0, column=0 pady=10, padx=10)
-    # modeSelIns.grid(row=0, column=0 pady=10, padx=10)
-    # colourSelIns.grid(row=0, column=0 pady=10, padx=10)
-    # scrambleIns.grid(row=0, column=0 pady=10, padx=10)
-    # optionsIns.grid(row=0, column=0 pady=10, padx=10)
-    # exitIns.grid(row=0, column=0 pady=10, padx=10)
+    #PLACE OTHER
+    ok.grid(row=0, column=0)
+    exit.grid(row=0, column=1)
 
-def calidatelogin():
+    
+
+def validatelogin():
     usernameStr = str(username.get())
     passwordStr = str(password.get())
     
-    with open('Users.txt', 'r') as f:
-        data = f.read(usernameStr)
-    
-    if bcrypt.checkpw(passwordStr.encode("utf8"), data) == True:
-        solving()
-    else:
-        pass
+    for line in open("Users.txt","r").readlines():
+        login_info = line.split() 
+        if usernameStr == login_info[0]: #passwordStr == login_info[1]
+            instructions()
 
 
 def validateregister():
+    global Out
     usernameStr = str(username.get())
     passwordStr = str(password.get())
-    print(username)
-    print(usernameStr)
-    correct = False
-    
-    salt = bcrypt.gensalt()
-    hashed = bcrypt.hashpw(passwordStr.encode("utf8"), salt)
-    print(salt)
-    print(hashed)
-    hashed = str(hashed)
+
     #VALIDATE USER
-    if len(usernameStr) > 3 and len(usernameStr) < 17 and len(passwordStr) > 5 and len(passwordStr) < 20 and re.search('[0-9]',passwordStr) is not None and re.search('[A-Z]',passwordStr) is not None and re.search('[a-z]',passwordStr) is not None and re.search('[£!#$%&()*+/<=>?@_]',passwordStr) is not None:
+    if len(usernameStr) > 3 and len(usernameStr) < 17 and len(passwordStr) > 5 and len(passwordStr) < 20 and re.search('[0-9]',passwordStr) is not None and re.search('[A-Z]',passwordStr) is not None and re.search('[a-z]',passwordStr) is not None and re.search('[£!#$%&()*+/<=>?@_]',passwordStr) is not None:        
         with open('Users.txt', 'a') as f:
             f.write(usernameStr)
-            f.write("\n")
-            f.write(hashed)
-            f.write("\n")     
+            f.write(" ")
+            f.write(passwordStr)
+        login() 
+
+
+def usercheck():
+    global Out
+    usernameStr = str(username.get())
+    passwordStr = str(password.get()) 
+    Out.config(state = "normal")
+    try:
+        for line in open("Users.txt","r").readlines():
+            login_info = line
+            if usernameStr == login_info[0]:
+                Out.insert(0,"Username already used")
+            else:
+                validateregister()
+    except:
+        Out.delete(0,END)
+        Out.insert(0,"INVALID INPUT")
+    Out.config(state = "readonly")
 
 
 def register(): #COMPLETED
-    global username, password
+    global username, password, Out
     register = Toplevel(root)
     register.title("Register")
     register.geometry("500x250")
@@ -382,16 +393,18 @@ def register(): #COMPLETED
     password = StringVar()
 
     #DEFINING FRAMES   
-    output = Labelframe(register,  text="Output")
-    PInfo = LabelFrame(register, text="Password info")
-    UInfo = Labelframe(register, text="Username info")
-    InputUP = LabelFrame(register, text="Username and Password")
+    submit = Labelframe(register, text="")
+    PInfo  = LabelFrame(register, text="Password info")
+    UInfo  = Labelframe(register, text="Username info")
+    InputUP= LabelFrame(register, text="Username and Password")
+    Output = Labelframe(register, text="Output")
      
     #PLACING FRAMES
-    PInfo.grid(row=0,column=0, padx=5, pady=10)
+    PInfo.grid(row=0,column=0, padx=5, pady=10, rowspan=3)
     UInfo.grid(row=0, column=1, padx=5, pady=10)
-    output.grid(row=1, column=1)
-    InputUP.grid(row=1, column=0)
+    submit.grid(row=4, column=1)
+    InputUP.grid(row=4, column=0)
+    Output.grid(row=2, column=1)
 
     #INPUTS
     Userlabel1 = Label(InputUP, text="New Username:")
@@ -399,14 +412,18 @@ def register(): #COMPLETED
     PassLabel1 = Label(InputUP, text = "New Password:")
     PassEntry1 = Entry(InputUP, textvariable = password, show="*")
     
-    #OUTPUT
-    SubBtn = Button(output, text="Submit", command=validateregister)
+    #SUBMIT
+    SubBtn = Button(submit, text="Submit", command=usercheck)
     SubBtn.grid(row = 3, column = 0, padx=10, pady=5)
 
     #USERNAME INFO
     InfoU = Label(UInfo, text="Username must be between 3-17 characters.")
     InfoU.grid(row=4, column = 1)
     
+    #OUTPUT
+    Out = Entry(Output,width=30,state = "readonly")
+    Out.grid(row=5, column=1)
+
     #PASSWORD INFO
     InfoP1 = Label(PInfo, text="Password must have a special character")       
     InfoP2 = Label(PInfo, text="Password must have a lowercase letter")         
@@ -430,7 +447,7 @@ def login():
     global username, password, login
     login = Toplevel(root)
     login.title("login")
-    login.geometry("400x320")
+    login.geometry("240x75")
 
     username = StringVar()
     password = StringVar()
@@ -439,7 +456,7 @@ def login():
     UserEntry1 = Entry(login, textvariable = username)
     PassLabel1 = Label(login, text = "Enter Password")
     PassEntry1 = Entry(login, textvariable = password, show="*")
-    SubBtn = Button(login, text="Submit", command=solving)
+    SubBtn     = Button(login, text="Submit", command=validatelogin)
 
     Userlabel1.grid(row = 0, column = 0)
     UserEntry1.grid(row = 0, column = 1)
