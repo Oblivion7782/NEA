@@ -62,11 +62,12 @@ class Cube:
     def solve(self):
         if self.all9 != "[('U', '=', 9), ('R', '=', 9), ('L', '=', 9), ('D', '=', 9), ('B', '=', 9), ('F', '=', 9)]":
             order = input("Enter the Rubik's cube orientation: ") #"".join(qb.current_face for qb in self.cube)
-            print
+            
             
             for i in ["U", "R", "L", "D", "B", "F"]:
                 correct = (i,"=",order.count(i))
                 self.all9.append(correct)
+            print(correct)
         return kociemba.solve(order)
          
     #      while order:

@@ -294,11 +294,13 @@ def validatelogin():
     usernameStr = str(username.get())
     passwordStr = str(password.get())
     
-    for line in open("Users.txt","r").readlines():
-        login_info = line.split()
-        if usernameStr == login_info[0] and passwordStr == login_info[1]:
-            solving()
-            # instructions()
+    with open("Users.txt","r") as f:
+        for line in f:
+            login_info = line.split()
+            if usernameStr == login_info[0] and passwordStr == login_info[1]:
+                solving()
+            else: 
+                pass    # instructions()
 
 
 def validateregister():
